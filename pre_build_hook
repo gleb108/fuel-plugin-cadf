@@ -1,0 +1,24 @@
+#!/bin/bash
+
+set -eux
+
+REPO='http://mirror.mosci.jiocloud.com/DE/cadf_plugin_repo/'
+
+ROOT=$(dirname `readlink -f $0`)
+UBUNTU_REPO_PATH=$ROOT/repositories/ubuntu
+
+rm -f $UBUNTU_REPO_PATH/*.deb
+
+cd ${UBUNTU_REPO_PATH}
+
+/usr/bin/wget -q -r -nd -A deb --accept-regex "cadf_plugin_repo/.*\.deb" ${REPO}
+
+check=`find ${UBUNTU_REPO_PATH} -type f -name "rgwift*.deb" | wc -l`
+[ ${check} -eq 1 ] || {
+  echo >&2 "Package rgwift is not found on ${UBUNTU_REPO_PATH}"; exit 1
+}
+check=`find ${UBUNTU_REPO_PATH} -type f -name "python-wsgiproxy*.deb" | wc -l`
+[ ${check} -eq 1 ] || {
+  echo >&2 "Package python-wsgiproxy is not found on ${UBUNTU_REPO_PATH}"; exit 1
+}
+

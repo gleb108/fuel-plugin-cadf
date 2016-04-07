@@ -1,0 +1,59 @@
+attributes:
+  cadf-collector-url:
+    value: "http://host:port"
+    label: "HTTP CADF collector"
+    type: "text"
+    weight: 20
+    regex:
+      source: '\S'
+      error: "URL cannot be empty"
+    restrictions:
+      - condition: settings:additional_components.ceilometer.value == false
+        action: disable
+        message: "Ceilometer must be installed and enabled"
+  cadf-enable-nova:
+    value: true
+    label: "Enable CADF notification for Nova"
+    weight: 10
+    type: "checkbox"
+    restrictions:
+      - condition: settings:additional_components.ceilometer.value == false
+        action: disable
+        message: "Ceilometer must be installed and enabled"
+  cadf-enable-cinder:
+    value: true
+    label: "Enable CADF notification for Cinder"
+    weight: 10
+    type: "checkbox"
+    restrictions:
+      - condition: settings:additional_components.ceilometer.value == false
+        action: disable
+        message: "Ceilometer must be installed and enabled"
+  cadf-enable-glance:
+    value: true
+    label: "Enable CADF notification for Glance"
+    weight: 10
+    type: "checkbox"
+    restrictions:
+      - condition: settings:additional_components.ceilometer.value == false
+        action: disable
+        message: "Ceilometer must be installed and enabled"
+  cadf-enable-neutron:
+    value: true
+    label: "Enable CADF notification for Neutron"
+    weight: 10
+    type: "checkbox"
+    restrictions:
+      - condition: settings:additional_components.ceilometer.value == false
+        action: disable
+        message: "Ceilometer must be installed and enabled"
+  cadf-enable-rados:
+    value: true
+    label: "Enable CADF notification for Rados"
+    weight: 10
+    type: "checkbox"
+    restrictions:
+      - condition: settings:additional_components.ceilometer.value == false or settings:storage.objects_ceph.value == false
+        action: disable
+        message: "Ceilometer must be installed and enabled. Ceph RadosGW for objects must be enabled"
+
