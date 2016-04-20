@@ -9,7 +9,10 @@ class cadf::cadf_rgwift {
 
   $public_vip  = hiera('public_vip')
   $internal_virtual_ip = hiera('management_vip')
-  $public_ssl  = hiera('public_ssl')
+
+  $ssl_hash          = hiera_hash('use_ssl', {})
+  $public_ssl_hash   = hiera('public_ssl')
+  $public_ssl_path   = get_ssl_property($ssl_hash, $public_ssl_hash, 'cadf', 'public', 'path', [''])
 
   $current_node_hash = hiera('node')
   $current_mgmt_ip = $current_node_hash['network_roles']['management']
@@ -36,7 +39,8 @@ class cadf::cadf_rgwift {
     ipaddresses            => $controller_mgmt_ips,
     public                 => true,
     internal               => true,
-    public_ssl             => $public_ssl,
+    public_ssl             => $public_ssl_hash,
+    public_ssl_path        => $public_ssl_path,
     haproxy_config_options => { 'balance'        => 'roundrobin',
                                 'mode'           => 'tcp', },
     balancermember_options => 'check',

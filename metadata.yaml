@@ -1,13 +1,13 @@
 # Plugin name
 name: cadf
 # Human-readable name for your plugin
-title: 'CADF Notification For Fuel 7.0'
+title: 'CADF Notification For Fuel 8.0'
 # Plugin version
 version: '1.0.0'
 # Description
 description: 'Enable CADF notifications'
 # Required fuel version
-fuel_version: ['7.0']
+fuel_version: ['8.0']
 # Specify license of your plugin
 licenses: ['Apache License Version 2.0']
 # Specify author or company name
@@ -19,7 +19,7 @@ groups: []
 # The plugin is compatible with releases in the list
 releases:
   - os: ubuntu
-    version: 2015.1.0-7.0
+    version: liberty-8.0
     mode: ['ha', 'multinode']
     deployment_scripts_path: deployment_scripts/
     repository_path: repositories/ubuntu

@@ -2,7 +2,7 @@
   type: puppet
   groups: [primary-controller, controller]
   required_for : [post_deployment_end]
-  requires: [ceilometer-controller,openstack-controller,openstack-network,glance]
+  requires: [ceilometer-controller,openstack-controller,openstack-network-end,glance]
   parameters:
     puppet_manifest: "puppet/manifests/cadf.pp"
     puppet_modules: "puppet/modules/:/etc/puppet/modules/"
