@@ -12,6 +12,7 @@ if $cadf_collector_url {
   class { 'cadf::cadf_ceilometer':
     cadf_collector_url => $cadf_collector_url,
   }
+  class { 'cadf::cadf_keystone': }
 }
 if $nova_enabled {
   class { 'cadf::cadf_nova': }
