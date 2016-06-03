@@ -48,7 +48,7 @@ attributes:
         action: disable
         message: "Ceilometer must be installed and enabled"
   cadf-enable-rados:
-    value: true
+    value: false
     label: "Enable CADF notification for Rados"
     weight: 10
     type: "checkbox"

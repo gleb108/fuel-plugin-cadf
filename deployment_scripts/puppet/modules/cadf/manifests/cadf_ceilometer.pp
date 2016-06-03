@@ -23,7 +23,7 @@ class cadf::cadf_ceilometer ($cadf_collector_url) {
 
   exec {'Adding additional dispatchers to ceilometer.conf':
     path    => '/usr/bin:/bin:/usr/sbin:/sbin',
-    command => "sed -i 's|^\[DEFAULT\]|\[DEFAULT\]\\n\\ndispatcher = database\\ndispatcher = http|' \
+    command => "sed -i 's|^\\[DEFAULT\\]|\\[DEFAULT\\]\\n\\ndispatcher = database\\ndispatcher = http|' \
     ${config}",
     unless  => "grep -q '^dispatcher\s*=\s*database' ${config}",
   } ->
@@ -38,7 +38,7 @@ class cadf::cadf_ceilometer ($cadf_collector_url) {
     ensure  => present,
     section => 'dispatcher_http',
     setting => 'cadf_only',
-    value   => true,
+    value   => false,
     notify  => Service['ceilometer-collector', 'ceilometer-agent-notification'],
   }
 
