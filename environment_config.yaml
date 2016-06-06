@@ -53,7 +53,6 @@ attributes:
     weight: 10
     type: "checkbox"
     restrictions:
-      - condition: settings:additional_components.ceilometer.value == false or settings:storage.objects_ceph.value == false
+      - condition: settings:additional_components.ceilometer.value == false or settings:storage.objects_ceph.value == false or settings:public_ssl.services.value == false
         action: disable
-        message: "Ceilometer must be installed and enabled. Ceph RadosGW for objects must be enabled"
-
+        message: "Ceilometer must be installed and enabled. Ceph RadosGW for objects must be enabled. TLS for public endpoints must be enabled"
